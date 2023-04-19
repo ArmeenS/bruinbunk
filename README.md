@@ -6,7 +6,7 @@ Repository for our CS97 class project called bruinbunk.
 For development 
 
 ```
-yarn dev
+npm run dev
 ```
 
 For deployment
