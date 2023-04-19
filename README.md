@@ -27,13 +27,23 @@ WIP
 We use npm for this project instead of yarn.
 
 Besides the above mentioned technologies, here is the npm libraries we've used:
-* More eventually...
+```
+npm install react-icons --save 
+npm install formik --save 
+npm install yup --save
+npm install firebase
+npm install -g firebase-tools
+```
 
 # Deployment
 
 Deployment is done using Google firebase.
 
 Here are the commands to deploy to our google firebase:
+
+```
+WIP
+```
 
 # Development notes
 

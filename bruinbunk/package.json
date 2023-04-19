@@ -4,12 +4,17 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "type-check": "tsc"
   },
   "dependencies": {
+    "firebase": "^9.19.1",
+    "formik": "^2.2.9",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

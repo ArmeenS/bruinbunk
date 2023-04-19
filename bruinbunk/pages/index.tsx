@@ -1,13 +1,20 @@
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Image from "next/image";
+import BruinBunkCroppedLogo from "../public/BruinBunkCroppedLogo.png";
+import Portfolio from '../components/Landing';
+
+// Navbar at the top of the screen *Eventually put this into its own class*
+const NavBar = () => (
+  <div className="h-12 w-full text-white bg-red-200 flex flex-row justify-end">
+    
+    <div className="bg-yellow-200">
+      hello
+    </div>    
+  </div>
+);
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
+  <Portfolio/>
 )
 
 export default IndexPage
