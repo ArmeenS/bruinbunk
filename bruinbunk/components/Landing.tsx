@@ -67,40 +67,39 @@ function Portfolio() {
                                     </div>
                                     <div className="sm:w-full m-auto">
 
+                                
+                                <Formik
+                                    initialValues = {initialValues}
+                                    validationSchema={EmailSignupSchema}
+                                    onSubmit={(values, { setSubmitting, resetForm }) => {
                                         
-                                        <Formik
-                                            initialValues = {initialValues}
-                                            validationSchema={EmailSignupSchema}
-                                            onSubmit={(values, { setSubmitting }) => {
-                                                setTimeout(() => {
-                                                //setSubmitting(false); only wants users to submit once
-                                                setEmail(values.email);
-                                                }, 400);
-                                            }}
-                                        >
-                                        {({ isSubmitting }) => (
-                                            <Form>
-                                                <Field placeholder="Email" className="w-fit  inline-block border border-0 rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
-                                                <button className="w-fit px-4  text-sm bg-brand rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
-                                                    Sign up
-                                                </button>
-                                                <ErrorMessage className="text-red-600 text-s" name="email" component="div" />
+                                        //setSubmitting(false); only wants users to submit once
+                                        setEmail(values.email);
+                                        resetForm({ values: {email: ""} })
+                                        
+                                    }}
+                                >
+                                {({ isSubmitting }) => (
+                                    <Form>
+                                        <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
+                                        <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
+                                            Sign up
+                                        </button>
+                                        <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
 
-                                            
-                                            </Form>
-                                        )}
-                                        </Formik>
-                                    </div>
-                                </div>
-                                <div className="">
-                                    <div className="text-white font-medium text-3xl mb-6">
-                                        Have a Bunk to Sublet? 
-                                    </div>
-                                    <a className="text-white text-2xl bg-brand rounded-lg px-6 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScNFEzfg0V_5HcKBVCNlc-o1kzt7zo4PC93oDsJWw6g07_aAA/viewform" target="_blank">
-                                        Enter Info
-                                    </a>
-                                </div>
+                                    
+                                    </Form>
+                                )}
+                                </Formik>
                             </div>
+                        </div>
+                        <div className="">
+                            <div className="text-white font-medium text-3xl mb-4">
+                                Have a Bunk to Sublet? 
+                            </div>
+                            <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="">
+                                Enter your information here
+                            </a>
                         </div>
                         
                     </div>
