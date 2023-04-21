@@ -38,12 +38,12 @@ function Portfolio() {
             <Hotbar/>
             <Waffle/>
             <div className="h-fit pt-24 mb-4 ">
-                <div className="sm:w-full md:w-8/12 m-auto flex flex-col text-center space-x-2 ">
-                    <div className=" p-2 w-fit m-auto">
-                        <Image src="BruinBunkCroppedLogo.png" width={500} height={500} loader={externalImageLoader} alt="Bruin Bunk"  className="w-fit"/>
+                <div className="sm:w-full md:w-8/12 m-auto flex flex-col text-center items-center space-x-2 ">
+                    <div className=" p-2 w-max">
+                        <Image src="BruinBunkCroppedLogo.png" width={750} height={750} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
                     </div>
                     
-                    <div className="text-4xl font-medium mb-4 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
+                    <div className="text-5xl font-medium mb-4 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
                     <div className="text-2xl font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
                         
                 </div>
