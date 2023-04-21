@@ -96,7 +96,7 @@ function Portfolio() {
                                     <div className="text-white font-medium text-3xl mb-6">
                                         Have a Bunk to Sublet? 
                                     </div>
-                                    <a className="text-white text-2xl bg-brand rounded-lg px-6 py-1" href="" target="_blank">
+                                    <a className="text-white text-2xl bg-brand rounded-lg px-6 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScNFEzfg0V_5HcKBVCNlc-o1kzt7zo4PC93oDsJWw6g07_aAA/viewform" target="_blank">
                                         Enter Info
                                     </a>
                                 </div>
