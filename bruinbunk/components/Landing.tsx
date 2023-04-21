@@ -43,8 +43,8 @@ function Portfolio() {
                         <Image src="BruinBunkCroppedLogo.png" width={500} height={500} loader={externalImageLoader} alt="Bruin Bunk"  className="w-fit"/>
                     </div>
                     
-                    <div className="text-3xl font-medium mb-2 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
-                    <div className=" font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
+                    <div className="text-4xl font-medium mb-4 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
+                    <div className="text-2xl font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
                         
                 </div>
                         
@@ -62,7 +62,7 @@ function Portfolio() {
 
                             <div>
                                 <div className=" mb-20">
-                                    <div className="m-auto text-white font-medium text-3xl mb-4">
+                                    <div className="m-auto text-white font-medium text-2xl mb-4">
                                         Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
                                     </div>
                                     <div className="sm:w-full m-auto">
