@@ -80,11 +80,11 @@ function Portfolio() {
                                         >
                                         {({ isSubmitting }) => (
                                             <Form>
-                                                <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
+                                                <Field placeholder="Email" className="w-fit  inline-block border border-0 rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
                                                 <button className="w-fit px-4  text-sm bg-brand rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
                                                     Sign up
                                                 </button>
-                                                <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
+                                                <ErrorMessage className="text-red-600 text-s" name="email" component="div" />
 
                                             
                                             </Form>
