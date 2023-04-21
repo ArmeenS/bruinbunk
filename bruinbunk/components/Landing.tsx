@@ -77,7 +77,7 @@ function Portfolio() {
                                 {({ isSubmitting }) => (
                                     <Form>
                                         <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
-                                        <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
+                                        <button className="w-fit px-4  text-sm bg-brand rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
                                             Sign up
                                         </button>
                                         <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
@@ -92,7 +92,7 @@ function Portfolio() {
                             <div className="text-white font-medium text-3xl mb-4">
                                 Have a Bunk to Sublet? 
                             </div>
-                            <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="" target="_blank">
+                            <a className="text-white bg-brand rounded-lg px-4 py-1" href="" target="_blank">
                                 Enter your information here
                             </a>
                         </div>
@@ -101,7 +101,7 @@ function Portfolio() {
                     
                 </div>
             </div>
-            <div className="bg-blue-600">
+            <div className="bg-brand">
                 <div className="w-8/12 m-auto pb-20 pt-20">
                     <Contact/>
                 </div>
