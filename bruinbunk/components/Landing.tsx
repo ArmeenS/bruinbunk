@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { app } from "../backend/index.js";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { Dimensions } from 'react-native';
 
 const db = getFirestore(app);
 
@@ -43,58 +44,63 @@ function Portfolio() {
                     </div>
                     
                     <div className="text-3xl font-medium mb-2 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
-                    <div className=" font-medium mb-2 text-center text-white ">Congrats, you can finally delete Facebook</div>
+                    <div className=" font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
                         
                 </div>
                         
             </div>
             <div className="w-full py-10">
-                <div className="md:w-11/12 sm:w-full m-auto ">
-                    <div id={"about"} className="text-center flex flex-col space-x-10">
-                        <div className="mb-20">
-                            <Image src="SubleaseCycle.png" width={500} height={500} loader={externalImageLoader}  alt="Sublease Cycle"  className="w-40  m-auto"/>
-                            <div className="text-white font-medium">
-                                Break the sublease scramble
+                <div className="flex justify-center m-auto ">
+                    <div id={"about"} className="text-center max-w-7xl flex flex-col items-center">
+                        <div className="grid grid-cols-2 md:w-8/12">
+                            <div className="mb-20 flex flex-col items-center">
+                                <Image src="SubleaseCycle.png" width={300} height={300} loader={externalImageLoader}  alt="Sublease Cycle"  className=" "/>
+                                <div className="text-white text-2xl font-medium">
+                                    Break the sublease scramble
+                                </div>
                             </div>
-                        </div>
-                        <div className=" mb-20">
-                            <div className="m-auto md:w-1/2 text-white font-medium text-3xl mb-4">
-                                Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
-                            </div>
-                            <div className="sm:w-full md:w-1/2 m-auto">
 
-                                
-                                <Formik
-                                    initialValues = {initialValues}
-                                    validationSchema={EmailSignupSchema}
-                                    onSubmit={(values, { setSubmitting }) => {
-                                        setTimeout(() => {
-                                        //setSubmitting(false); only wants users to submit once
-                                        setEmail(values.email);
-                                        }, 400);
-                                    }}
-                                >
-                                {({ isSubmitting }) => (
-                                    <Form>
-                                        <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
-                                        <button className="w-fit px-4  text-sm bg-brand rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
-                                            Sign up
-                                        </button>
-                                        <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
+                            <div>
+                                <div className=" mb-20">
+                                    <div className="m-auto text-white font-medium text-3xl mb-4">
+                                        Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
+                                    </div>
+                                    <div className="sm:w-full m-auto">
 
-                                    
-                                    </Form>
-                                )}
-                                </Formik>
+                                        
+                                        <Formik
+                                            initialValues = {initialValues}
+                                            validationSchema={EmailSignupSchema}
+                                            onSubmit={(values, { setSubmitting }) => {
+                                                setTimeout(() => {
+                                                //setSubmitting(false); only wants users to submit once
+                                                setEmail(values.email);
+                                                }, 400);
+                                            }}
+                                        >
+                                        {({ isSubmitting }) => (
+                                            <Form>
+                                                <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
+                                                <button className="w-fit px-4  text-sm bg-brand rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
+                                                    Sign up
+                                                </button>
+                                                <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
+
+                                            
+                                            </Form>
+                                        )}
+                                        </Formik>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="text-white font-medium text-3xl mb-6">
+                                        Have a Bunk to Sublet? 
+                                    </div>
+                                    <a className="text-white text-2xl bg-brand rounded-lg px-6 py-1" href="" target="_blank">
+                                        Enter Info
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div className="">
-                            <div className="text-white font-medium text-3xl mb-6">
-                                Have a Bunk to Sublet? 
-                            </div>
-                            <a className="text-white text-2xl bg-brand rounded-lg px-6 py-1" href="" target="_blank">
-                                Enter Info
-                            </a>
                         </div>
                         
                     </div>
