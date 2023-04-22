@@ -9,11 +9,6 @@ For development
 npm run dev
 ```
 
-For deployment
-```
-WIP
-```
-
 # Tech Stack used
 
 * Next.js
@@ -41,8 +36,11 @@ Deployment is done using Google firebase.
 
 Here are the commands to deploy to our google firebase:
 
+make sure you are logged into firebase from the CLI then
 ```
-WIP
+npm run build
+npm run export
+firebase deploy
 ```
 
 # Development notes
