@@ -2,11 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { app } from "../backend/index.js";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { Dimensions } from 'react-native';
 
 const db = getFirestore(app);
 
-// Set the user in the database
+// Set the email in the database
 export const setEmail = async (email: string) => {
     const docRef = await addDoc(collection(db, "email_waitlist"), {
         email: email,
@@ -61,46 +60,48 @@ function Portfolio() {
                             </div>
 
                             <div>
-                                <div className=" mb-20">
+                                <div className="flex flex-col">
                                     <div className="m-auto text-white font-medium text-2xl mb-4">
                                         Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
                                     </div>
-                                    <div className="sm:w-full m-auto">
+                                    <div className="sm:w-full m-auto">                                
+                                        <Formik
+                                            initialValues = {initialValues}
+                                            validationSchema={EmailSignupSchema}
+                                            onSubmit={(values, { setSubmitting, resetForm }) => {
+                                                
+                                                //setSubmitting(false); only wants users to submit once
+                                                setEmail(values.email);
+                                                resetForm({ values: {email: ""} })
+                                                
+                                            }}
+                                        >
+                                            {({ isSubmitting }) => (
+                                                <Form>
+                                                    <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
+                                                    <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
+                                                        Sign up
+                                                    </button>
+                                                    <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
 
-                                
-                                <Formik
-                                    initialValues = {initialValues}
-                                    validationSchema={EmailSignupSchema}
-                                    onSubmit={(values, { setSubmitting, resetForm }) => {
-                                        
-                                        //setSubmitting(false); only wants users to submit once
-                                        setEmail(values.email);
-                                        resetForm({ values: {email: ""} })
-                                        
-                                    }}
-                                >
-                                {({ isSubmitting }) => (
-                                    <Form>
-                                        <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
-                                        <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
-                                            Sign up
-                                        </button>
-                                        <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
-
+                                                
+                                                </Form>
+                                            )}
+                                        </Formik>
+                                        <div className="mt-8">
+                                            <div className="text-white font-medium text-3xl mb-4">
+                                                Have a Bunk to Sublet? 
+                                            </div>
+                                            <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="">
+                                                Enter your information here
+                                            </a>
+                                        </div>
+                                    </div>
                                     
-                                    </Form>
-                                )}
-                                </Formik>
+                                </div>
                             </div>
                         </div>
-                        <div className="">
-                            <div className="text-white font-medium text-3xl mb-4">
-                                Have a Bunk to Sublet? 
-                            </div>
-                            <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="">
-                                Enter your information here
-                            </a>
-                        </div>
+                        
                         
                     </div>
                     

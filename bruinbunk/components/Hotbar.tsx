@@ -4,9 +4,6 @@ import Image from 'next/image';
 const externalImageLoader = ({ src }: { src: string }) =>
   `https://BruinBunk.com/${src}`;
 
-// Switch to this eventually
-//<Image src="BruinBunkCroppedLogo.png" loader={externalImageLoader} width="400" height="400" layout="responsive" alt="Bruin Bunk" className=""/>
-
 
 function Hotbar() {
     return (
