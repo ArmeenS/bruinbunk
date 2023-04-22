@@ -39,11 +39,18 @@ function Portfolio() {
             <div className="h-fit pt-24 mb-4 ">
                 <div className="sm:w-full md:w-8/12 m-auto flex flex-col text-center items-center space-x-2 ">
                     <div className=" p-2 w-max">
-                        <Image src="BruinBunkCroppedLogo.png" width={750} height={750} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
+                        { /* We need our images to be responsive to the different screen sizes. This is lazy but it works. */ }
+                        <div className="hidden md:block">
+                            <Image src="BruinBunkCroppedLogo.png" width={750} height={750} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
+                        </div>
+                        <div className="md:hidden">
+                            <Image src="BruinBunkCroppedLogo.png" width={300} height={300} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
+                        </div>
+                        
                     </div>
                     
-                    <div className="text-5xl font-medium mb-4 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
-                    <div className="text-2xl font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
+                    <div className="text-2xl md:text-5xl font-medium mb-4 text-center text-white ">UCLA's One-Stop Sublease Shop</div>
+                    <div className="text-xl md:text-2xl font-medium mb-2 text-xl text-center text-white ">Congrats, you can finally delete Facebook</div>
                         
                 </div>
                         
@@ -51,58 +58,64 @@ function Portfolio() {
             <div className="w-full py-10">
                 <div className="flex justify-center m-auto ">
                     <div id={"about"} className="text-center max-w-7xl flex flex-col items-center">
-                        <div className="grid grid-cols-2 md:w-8/12">
+                        <div className="md:grid md:grid-cols-2 md:w-8/12">
                             <div className="mb-20 flex flex-col items-center">
-                                <Image src="SubleaseCycle.png" width={300} height={300} loader={externalImageLoader}  alt="Sublease Cycle"  className=" "/>
-                                <div className="text-white text-2xl font-medium">
+                                { /* We need our images to be responsive to the different screen sizes. This is lazy but it works. */ }
+                                <div className="hidden md:block">
+                                    <Image src="SubleaseCycle.png" width={300} height={300} loader={externalImageLoader}  alt="Sublease Cycle"  className=" "/>
+                                </div>
+                                <div className="md:hidden">
+                                    <Image src="SubleaseCycle.png" width={200} height={300} loader={externalImageLoader}  alt="Sublease Cycle"  className=" "/>
+                                </div>
+                                <div className="text-white text-xl md:text-2xl font-medium">
                                     Break the sublease scramble
                                 </div>
                             </div>
 
                             <div>
-                                <div className="flex flex-col">
-                                    <div className="m-auto text-white font-medium text-2xl mb-4">
-                                        Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
-                                    </div>
-                                    <div className="sm:w-full m-auto">                                
-                                        <Formik
-                                            initialValues = {initialValues}
-                                            validationSchema={EmailSignupSchema}
-                                            onSubmit={(values, { setSubmitting, resetForm }) => {
-                                                
-                                                //setSubmitting(false); only wants users to submit once
-                                                setEmail(values.email);
-                                                resetForm({ values: {email: ""} })
-                                                
-                                            }}
-                                        >
-                                            {({ isSubmitting }) => (
-                                                <Form>
-                                                    <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
-                                                    <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
-                                                        Sign up
-                                                    </button>
-                                                    <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
-
-                                                
-                                                </Form>
-                                            )}
-                                        </Formik>
-                                        <div className="mt-8">
-                                            <div className="text-white font-medium text-3xl mb-4">
-                                                Have a Bunk to Sublet? 
-                                            </div>
-                                            <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScNFEzfg0V_5HcKBVCNlc-o1kzt7zo4PC93oDsJWw6g07_aAA/viewform?usp=sf_link">
-                                                Enter your information here
-                                            </a>
+                                <div className="flex flex-col space-y-10 md:space-y-0 h-full">
+                                    <div className="h-1/2 w-full">                                        
+                                        <div className="m-auto text-white font-medium text-2xl mb-4">
+                                            Your Summer Bunk Awaits: Get Exclusive Access to UCLA Sublet Listings Now!
                                         </div>
+                                        <div className="sm:w-full m-auto">                                
+                                            <Formik
+                                                initialValues = {initialValues}
+                                                validationSchema={EmailSignupSchema}
+                                                onSubmit={(values, { setSubmitting, resetForm }) => {
+                                                    
+                                                    //setSubmitting(false); only wants users to submit once
+                                                    setEmail(values.email);
+                                                    resetForm({ values: {email: ""} })
+                                                    
+                                                }}
+                                            >
+                                                {({ isSubmitting }) => (
+                                                    <Form>
+                                                        <Field placeholder="Email" className="w-fit  inline-block border rounded-l-lg px-2 text-gray-600 select-none focus:outline-none  py-1 text-sm" type="email" name="email" />
+                                                        <button className="w-fit px-4  text-sm bg-blue-600 rounded-r-lg py-1 text-gray-100" type="submit" disabled={isSubmitting}>
+                                                            Sign up
+                                                        </button>
+                                                        <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
+
+                                                    
+                                                    </Form>
+                                                )}
+                                            </Formik>
+                                        </div>
+                                        
                                     </div>
-                                    
+                                    <div className="h-1/2 w-full">
+                                        <div className="text-white font-medium text-3xl mb-4">
+                                            Have a Bunk to Sublet? 
+                                        </div>
+                                        <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScNFEzfg0V_5HcKBVCNlc-o1kzt7zo4PC93oDsJWw6g07_aAA/viewform?usp=sf_link">
+                                            Enter your information here
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                      
                     </div>
                     
                 </div>
