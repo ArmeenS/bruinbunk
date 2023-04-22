@@ -37,7 +37,7 @@ function Portfolio() {
             <Hotbar/>
             <Waffle/>
             <div className="h-fit pt-24 mb-4 ">
-                <div className="sm:w-full md:w-8/12 m-auto flex flex-col text-center items-center space-x-2 ">
+                <div className="w-screen md:w-8/12 m-auto flex flex-col text-center items-center space-x-2 ">
                     <div className=" p-2 w-max">
                         { /* We need our images to be responsive to the different screen sizes. This is lazy but it works. */ }
                         <div className="hidden md:block">
@@ -109,7 +109,7 @@ function Portfolio() {
                                         <div className="text-white font-medium text-3xl mb-4">
                                             Have a Bunk to Sublet? 
                                         </div>
-                                        <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScNFEzfg0V_5HcKBVCNlc-o1kzt7zo4PC93oDsJWw6g07_aAA/viewform?usp=sf_link">
+                                        <a className="text-white bg-blue-600 rounded-lg px-4 py-1" href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link">
                                             Enter your information here
                                         </a>
                                     </div>
