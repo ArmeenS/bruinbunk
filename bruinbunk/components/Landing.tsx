@@ -71,9 +71,9 @@ function Portfolio() {
                                     
                                 </div>
                                 
-                                <div className="text-3xl sm:pt-0 md:pt-14 md:text-7xl font-bold sm:mb-2 md:mb-6  text-center ">Find your perfect UCLA sublet</div>
-                                <div className="text-3xl md:text-4xl font-bold mb-2  text-center mt-4 ">Get sublet listings</div>
-                                <div className="text-md md:text-md font-medium mb-0 text-center ">Sign up for frequent updates!</div>
+                                <div className="text-3xl md:text-6xl font-medium mb-4  text-center ">Find your perfect UCLA sublet</div>
+                                <div className="text-3xl md:text-3xl font-medium mb-2  text-center mt-4 ">Get sublet listings</div>
+                                <div className="text-md md:text-md font-medium mb-2 text-center ">Sign up for frequent updates</div>
                             </div>
                         </div>
                         <div className="w-full pb-10">
@@ -110,7 +110,7 @@ function Portfolio() {
                                                 
                                             </div>
                                             
-                                            <div className="font-bold text-3xl mb-4 mt-4 pt-4">
+                                            <div className="font-medium text-3xl mb-4 mt-4">
                                                 List your sublet 
                                             </div>
                                             <div className="m-auto w-fit">
