@@ -15,6 +15,7 @@ npm run dev
 * Typescript
 * Tailwind CSS
 * React
+* React Icons
 * More eventually...
 
 # npm libraries used
@@ -28,6 +29,7 @@ npm install formik --save
 npm install yup --save
 npm install firebase
 npm install -g firebase-tools
+npm install react-icons --save
 ```
 
 # Deployment
