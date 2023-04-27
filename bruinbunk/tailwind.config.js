@@ -12,6 +12,9 @@ module.exports = {
         bruinblue: '#194CA7',
       }
     },
+    fontFamily: {
+      figmaMonts: ["Montserrat"],
+    },
   },
   plugins: [],
 }

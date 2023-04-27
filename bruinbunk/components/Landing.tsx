@@ -37,8 +37,8 @@ function Portfolio() {
     const initialValues: EmailSignUpData = { email: '' };
 
     return (
-        <div className="bg-background">
-            <div className="">
+        <div className="bg-bruinblue">
+            <div className="bg-background">
                 <Hotbar/>
                 {/*<Waffle/>*/}
                 <div className="md:hidden absolute w-full">
@@ -53,7 +53,7 @@ function Portfolio() {
                     </div>
 
                 </div>
-                <div className="md:grid md:grid-cols-5 md:px-8">
+                <div className="md:grid md:grid-cols-5 md:px-2">
                     <div className="md:col-span-3 md:h-full">
 
                         <div className="h-fit pt-24 mb-4 ">
@@ -71,9 +71,13 @@ function Portfolio() {
                                     
                                 </div>
                                 
-                                <div className="text-3xl md:text-6xl font-medium mb-4  text-center ">Find your perfect UCLA sublet</div>
-                                <div className="text-3xl md:text-3xl font-medium mb-2  text-center mt-4 ">Get sublet listings</div>
-                                <div className="text-md md:text-md font-medium mb-2 text-center ">Sign up for frequent updates</div>
+                                {/* Making this two divs so that it appears on two lines like the figma */}
+                                <div className="flex flex-col -space-y-2 mb-4">
+                                    <div className="text-4xl md:text-5xl font-bold mb-4 text-center ">Find your perfect </div>
+                                    <div className="text-4xl md:text-5xl font-bold mb-4 text-center ">UCLA sublet</div>
+                                </div>
+                                <div className="text-3xl md:text-3xl font-bold mb-2  text-center mt-4 ">Get sublet listings</div>
+                                <div className="text-md md:text-md font-bold mb-2 text-center ">Sign up for frequent updates</div>
                             </div>
                         </div>
                         <div className="w-full pb-10">
@@ -96,8 +100,8 @@ function Portfolio() {
                                                     >
                                                         {({ isSubmitting }) => (
                                                             <Form>
-                                                                <Field placeholder="Email" className="w-fit bg-background py-2 font-medium inline-block border border-black rounded-full pl-4 pr-12 select-none focus:outline-none py-1 md:text-3xl" type="email" name="email" />
-                                                                <button className="font-medium w-fit px-6 bg-bruinblue rounded-full py-2 text-gray-100 -ml-20 border border-bruinblue md:text-3xl hover:bg-green-600 hover:border-green-600" type="submit" disabled={isSubmitting}>
+                                                                <Field placeholder="Email" className="w-fit bg-background py-2 font-medium inline-block border border-black rounded-full pl-6 pr-24 select-none focus:outline-none py-3 md:text-lg " type="email" name="email" />
+                                                                <button className="font-bold w-fit px-8 bg-bruinblue rounded-full py-3 text-gray-100 -ml-20 border border-bruinblue md:text-lg hover:bg-green-600 hover:border-green-600" type="submit" disabled={isSubmitting}>
                                                                     Sign Up
                                                                 </button>
                                                                 <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
@@ -110,11 +114,11 @@ function Portfolio() {
                                                 
                                             </div>
                                             
-                                            <div className="font-medium text-3xl mb-4 mt-4">
+                                            <div className="font-bold text-3xl mb-4 mt-4">
                                                 List your sublet 
                                             </div>
                                             <div className="m-auto w-fit">
-                                                <a className="text-white font-medium bg-bruinblue w-fit rounded-full px-4 py-2 flex flex-row md:text-3xl hover:bg-green-600" href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link">
+                                                <a className="text-white bg-bruinblue w-fit rounded-full px-6 py-3 flex flex-row md:text-lg md:font-bold hover:bg-green-600" href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link">
                                                     <div className="">
                                                         Enter your information here
 

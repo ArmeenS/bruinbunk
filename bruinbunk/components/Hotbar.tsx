@@ -8,17 +8,17 @@ const externalImageLoader = ({ src }: { src: string }) =>
 
 function Hotbar() {
     return (
-        <div id={"home"} className="hidden sm:block absolute w-full sm:top-0 z-20">
+        <div id={"home"} className="hidden md:block absolute w-full sm:top-0 z-20">
             <div className="sm:fit p-6 sm:flex m-auto ">
                 <div className="sm:flex w-1/2">
-                    <Link href="/" className="w-full h-full">
+                    
                          
-                        <Image src="BruinBunkLogo.svg" width={500} height={500} loader={externalImageLoader} alt="Bruin Bunk" className="h-48 -mt-5 w-fit"/>
+                    <Image src="BruinBunkLogo.svg" width={500} height={500} loader={externalImageLoader} alt="Bruin Bunk" className="h-48 -mt-5 w-fit"/>
                         
                         {/* 
                         <Image src={BruinBunkLogo} width={500} height={500} alt="Bruin Bunk" className=" h-48 -mt-5 w-fit"/>
                         */}
-                    </Link>
+                    
                 </div>
                 
                 {/*
