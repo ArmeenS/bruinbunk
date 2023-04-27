@@ -5,6 +5,7 @@ import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { BsArrowRight } from "react-icons/bs";
 import BruinBunkSublet from "../public/BruinBunkSublet.svg"; // used for local images
 import BruinBunkLogo from "../public/BruinBunkLogo.svg"; // used for local images
+import React, { useState } from 'react'
 
 
 const db = getFirestore(app);
@@ -35,6 +36,7 @@ interface EmailSignUpData {
 
 function Portfolio() {
     const initialValues: EmailSignUpData = { email: '' };
+    const [successfulEmailSubmission, setSuccessfulEmailSubmission] = useState<boolean>(false);
 
     return (
         <div className="bg-bruinblue">
@@ -94,7 +96,8 @@ function Portfolio() {
                                                             
                                                             //setSubmitting(false); only wants users to submit once
                                                             setEmail(values.email);
-                                                            resetForm({ values: {email: ""} })
+                                                            resetForm({ values: {email: ""} });
+                                                            setSuccessfulEmailSubmission(true);
                                                             
                                                         }}
                                                     >
@@ -105,7 +108,9 @@ function Portfolio() {
                                                                     Sign Up
                                                                 </button>
                                                                 <ErrorMessage className="text-red-600 text-xs" name="email" component="div" />
-
+                                                                {
+                                                                    successfulEmailSubmission ? <div className="text-lime-600 text-xs">Thank you for signing up!</div> : ""
+                                                                }
                                                             
                                                             </Form>
                                                         )}
@@ -118,7 +123,7 @@ function Portfolio() {
                                                 List your sublet 
                                             </div>
                                             <div className="m-auto w-fit">
-                                                <a className="text-white bg-bruinblue w-fit rounded-full px-6 py-3 flex flex-row md:text-lg md:font-bold hover:bg-green-600" href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link">
+                                                <a className="text-white bg-bruinblue w-fit rounded-full px-6 py-3 flex flex-row md:text-lg md:font-bold hover:bg-green-600" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link">
                                                     <div className="">
                                                         Enter your information here
 
