@@ -8,7 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "firebase": "^9.19.1",
+    "firebase": "^9.22.0",
     "formik": "^2.2.9",
     "next": "latest",
     "react": "^18.2.0",
