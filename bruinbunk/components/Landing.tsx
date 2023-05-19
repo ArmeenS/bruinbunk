@@ -55,8 +55,9 @@ function Portfolio() {
 
     useEffect(() => { // Fetch listings from Firebase
         const fetchData = async () => {
-            const listings = await getAllListings();
-            console.log(listings);
+            const masterListings = await getAllListings();
+            console.log(masterListings);
+            const currentListings = masterListings;
         }
 
         fetchData().catch(console.error);
