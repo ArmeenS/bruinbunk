@@ -25,6 +25,44 @@ async function getAllListings() {
 
 }
 
+/* 
+    Input:
+        type – room type [string array]
+        months – [string array]
+        min [int] (input 0 if no min is specified)
+        max [int] (input 10000 if no max is specified)
+*/
+async function filterListings(listings: any, type: string[], months: string[], min: number, max: number) {
+
+    let filtered: any = [];
+    for (let i = 0; i < listings.length; i++) {
+
+        if (!type.includes(listings[i].type)) {
+            continue;
+        }
+
+        let missing = false;
+        for (let j = 0; j < months.length; j++) {
+            if (!listings[i].months.includes(months[j])) {
+                missing = true;
+                break;
+            }
+        }
+        if (missing) {
+            continue;
+        }
+
+        if (listings[i].rent != -1) {
+            if (listings[i].rent < min || listings[i].rent > max) {
+                continue;
+            }
+        }
+
+        filtered.push(listings[i]);
+    }
+    return filtered;
+}
+
 // Set the email in the database
 export const setEmail = async (email: string) => {
     const docRef = await addDoc(collection(db, "email_waitlist"), {
@@ -54,13 +92,14 @@ function Portfolio() {
     const [successfulEmailSubmission, setSuccessfulEmailSubmission] = useState<boolean>(false);
 
     useEffect(() => { // Fetch listings from Firebase
-        const fetchData = async () => {
+        const getListings = async () => {
             const masterListings = await getAllListings();
-            console.log(masterListings);
-            const currentListings = masterListings;
+            console.log("All Listings: ", masterListings);
+            const currentListings = await filterListings(masterListings, ["2B/2B"], ["jun", "jul", "aug", "sep"], 0, 10000);
+            console.log("Filtered Listings: ", currentListings);
         }
 
-        fetchData().catch(console.error);
+        getListings().catch(console.error);
       }, []);
 
     return (
