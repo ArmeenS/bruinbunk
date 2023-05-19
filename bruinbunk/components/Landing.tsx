@@ -8,11 +8,22 @@ import { BsArrowRight } from "react-icons/bs";
 import BruinBunkSublet from "../public/BruinBunkSublet.svg"; // used for local images
 import BruinBunkLogo from "../public/BruinBunkLogo.svg"; // used for local images
 import React, { useState, useEffect } from 'react'
+import { doc, getDoc, getDocs, query, where } from "firebase/firestore";
 
 
 const db = getFirestore(app);
 
+async function getAllListings() {
 
+    let listings: any = [];
+    const querySnapshot = await getDocs(collection(db, "listings"));
+    querySnapshot.forEach((doc) => {
+        // console.log(doc.id, " => ", doc.data());
+        listings.push(doc.data());
+    });
+    return listings;
+
+}
 
 // Set the email in the database
 export const setEmail = async (email: string) => {
@@ -41,7 +52,15 @@ interface EmailSignUpData {
 function Portfolio() {
     const initialValues: EmailSignUpData = { email: '' };
     const [successfulEmailSubmission, setSuccessfulEmailSubmission] = useState<boolean>(false);
-   
+
+    useEffect(() => { // Fetch listings from Firebase
+        const fetchData = async () => {
+            const listings = await getAllListings();
+            console.log(listings);
+        }
+
+        fetchData().catch(console.error);
+      }, []);
 
     return (
         <div className="bg-bruinblue">
