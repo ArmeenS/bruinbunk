@@ -42,8 +42,9 @@ function Hotbar(props: propsType) {
     let roomOptions: Array<string> = [
         "1B/1B",
         "2B/1B",
-        "1B/2B",
         "2B/2B",
+        "3B/2B",
+        "3B/3B",
     ];
 
     let monthOptions: Array<string> = [          
@@ -145,7 +146,7 @@ function Hotbar(props: propsType) {
                     (
                     <div className="flex h-12/12">
                         <div className="m-auto ">
-                            <button className="rounded-full py-2 px-10 border border-blue-600  hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-white" onClick={() => {setSearchMode(true)}}>
+                            <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat'}} onClick={() => {setSearchMode(true)}}>
                                 Search
                             </button>
                         </div>
@@ -155,12 +156,12 @@ function Hotbar(props: propsType) {
                     (
                     <div className="flex h-12/12 ">
                         <div className="m-auto">
-                            <div className="py-2 flex flex-row border border-blue-600 rounded-full px-2">
+                            <div className="py-2 flex flex-row border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
 
-                                <div className="flex h-12/12 ">
+                                <div className="flex h-12/12">
                                     <div className="m-auto">
                                         <Dropdown
-                                            width="10em"
+                                            width="8em"
                                             options={roomOptions}
                                             multiselect={true}
                                             selectedOptions={selectedRoomOptionsIndex}
@@ -173,7 +174,7 @@ function Hotbar(props: propsType) {
                                 <div className="flex h-12/12 ">
                                     <div className="m-auto">
                                         <Dropdown
-                                            width="10em"
+                                            width="8em"
                                             options={monthOptions}
                                             multiselect={true}
                                             selectedOptions={selectedMonthOptionsIndex}
@@ -184,7 +185,7 @@ function Hotbar(props: propsType) {
                                 </div>
                                 <div className="flex h-12/12">
                                     <div className="m-auto ">
-                                        <button className="rounded-full py-2 px-10   hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-white" onClick={() => {onSearch()}}>
+                                        <button className="rounded-full py-2 px-10   hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" onClick={() => {onSearch()}}>
                                             Search
                                         </button>
                                     </div>
@@ -208,8 +209,10 @@ function Hotbar(props: propsType) {
                     <div className="flex h-12/12">
                         <div className="m-auto">
                             <a 
-                                className="rounded-full py-2 px-3 border border-blue-600  hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-white"
+                                className="rounded-full py-2 px-3 border border-blue-600 border-2 shadow-md hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400"
+                                style={{fontFamily:'Montserrat'}}
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link"
+                                target="#"
                             >
                                 List Sublet
                             </a>

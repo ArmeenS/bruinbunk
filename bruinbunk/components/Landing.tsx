@@ -105,12 +105,12 @@ function Portfolio() {
                 <div className={ isModalShown ? "" : "hidden" }>
                     <Modal setModalShown={setModalShown}/>
                 </div>
-                <div className="hidden md:flex bg-gray-200 w-full py-4 border-b flex-row ">
-                    <div className="w-1/2 pl-4">
+                <div className="hidden md:flex bg-gray-200 w-full py-4 border-b flex-row" style={{fontFamily:'Montserrat'}}>
+                    <div className="w-1/2 pl-8">
                         Introducing BruinBunk, UCLA's Sublease Marketplace
                     </div>
                     <div className="w-1/2 text-right pr-4">
-                        bruin@bruinbunk.com
+                        <a href="mailto:bruin@bruinbunk.com">bruin@bruinbunk.com</a>
                     </div>
                 </div>
                 <Hotbar 

@@ -29,9 +29,19 @@ const Listing = (props: propsInterface) => {
                 <div className="">
                     {months[0]} - {months[months.length-1]}
                 </div>
-                <div className="font-bold">
-                    ${rent} month
-                </div>         
+                { rent != -1 ?
+                    (
+                    <div className="font-bold">
+                        ${rent}/month
+                    </div>   
+                    )
+                    :
+                    (
+                    <div className="font-bold">
+                        Rent negotiable
+                    </div>   
+                    )  
+                }    
             </div>   
         </div>
     );
