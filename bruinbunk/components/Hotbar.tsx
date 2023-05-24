@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import BruinBunkLogo from "../public/BruinBunkLogo.svg"; // used for local images
+import BruinBunkLogo from "../public/bruinbunk.svg"; // used for local images
+import Google from "../public/googlebutton.svg"
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../backend/index.js"
 
@@ -123,6 +124,7 @@ function Hotbar(props: propsType) {
           const email = error.customData.email;
           // The AuthCredential type that was used.
           const credential = GoogleAuthProvider.credentialFromError(error);
+          
           // ...
         });
         console.log("Signing in with Google");
@@ -131,22 +133,18 @@ function Hotbar(props: propsType) {
     return (
         <div id={"home"} className="hidden bg-white border-b md:block sticky top-0 w-full sm:top-0 z-20">
             <div className="sm:fit sm:flex m-auto sm:flex-row ">
-                <div className="sm:flex w-1/2 h-full">         
-                    {/*    
-                    <Image src="BruinBunkLogo.svg" width={500} height={500} loader={externalImageLoader} alt="Bruin Bunk" className="h-48 -mt-5 w-fit"/>
-                    */}      
+                <div className="sm:flex w-1/2 h-full mt-1">
                         
-                    <Image src={BruinBunkLogo} width={500} height={500} alt="Bruin Bunk" className="ml-4 h-20 w-fit"/>
+                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className=" w-2/5"/>
                         
-                    
                 </div>
 
                 {
                     !isSearchMode ? 
                     (
                     <div className="flex h-12/12">
-                        <div className="m-auto ">
-                            <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat'}} onClick={() => {setSearchMode(true)}}>
+                        <div className="m-auto">
+                            <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat', fontSize: 20}} onClick={() => {setSearchMode(true)}}>
                                 Search
                             </button>
                         </div>
@@ -156,7 +154,7 @@ function Hotbar(props: propsType) {
                     (
                     <div className="flex h-12/12 ">
                         <div className="m-auto">
-                            <div className="py-2 flex flex-row border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
+                            <div className="py-1 flex flex-row border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
 
                                 <div className="flex h-12/12">
                                     <div className="m-auto">
@@ -185,7 +183,7 @@ function Hotbar(props: propsType) {
                                 </div>
                                 <div className="flex h-12/12">
                                     <div className="m-auto ">
-                                        <button className="rounded-full py-2 px-10   hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" onClick={() => {onSearch()}}>
+                                        <button className="rounded-full py-2 px-10   hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat', fontSize: 18}} onClick={() => {onSearch()}}>
                                             Search
                                         </button>
                                     </div>
@@ -198,18 +196,11 @@ function Hotbar(props: propsType) {
 
                 }
                 
-                
-
-                
-                
-
-                        
-                
                 <div className="sm:flex w-1/2 place-content-end space-x-10 h-12/12 mr-4">
                     <div className="flex h-12/12">
                         <div className="m-auto">
                             <a 
-                                className="rounded-full py-2 px-3 border border-blue-600 border-2 shadow-md hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400"
+                                className="rounded-full py-3 px-4 border border-blue-600 border-2 shadow-md hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400"
                                 style={{fontFamily:'Montserrat'}}
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScIaUS8PM8nP6N0DbzC25FR3rpqiM_aVlUX3dxtFq2R1yaBiw/viewform?usp=sf_link"
                                 target="#"
@@ -221,12 +212,12 @@ function Hotbar(props: propsType) {
                     <div className="flex h-12/12">
                         <div className="m-auto">
                             
-                            <a 
-                                className="my-auto hover:text-gray-300 text-gray-500 cursor-pointer hover:text-white"
+                            <button 
+                                className="py-4 my-auto hover:text-gray-300 text-gray-500 cursor-pointer hover:text-gray-300"
                                 onClick={googleLogin}
                             >
-                                Log out
-                            </a>
+                                <Image src={Google} height={40} alt="Google " className="" content="Google"/>
+                            </button>
                         </div>
                     </div>
                         
