@@ -95,30 +95,34 @@ const Listing = (props: propsInterface) => {
             />
             */}
             <div className="relative w-12/12 h-80">
-                <div className="z-20 absolute h-80 w-10">
+                <div className="z-20 absolute h-80 w-10 ml-2">
                     <div className="flex h-80">
                         <div 
-                            className={"m-auto bg-white cursor-pointer" + (currentPictureIndex != 0 ? " " : " hidden")} 
+                            className={"m-auto cursor-pointer" + (currentPictureIndex != 0 ? " " : " hidden")} 
                             onClick={() => {onClickPrevImage()}}
                         >
                             {/*
                             <Image src={arrowLeft} loader={websiteImageLoader}  alt="L" className="w-fit h-fit z-20" width={10} height={10}/>
-                            */}
                             <Image src={arrowLeft} width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
+                            */}
+
+                            <Image src="leftArrow.png" width={10} height={10} loader={websiteImageLoader} alt="Bruin Bunk"  className={" w-10 h-10 bg-transparent"}/>
 
                         </div>
                     </div>
                 </div>
-                <div className="z-20 absolute h-80 w-10 right-0">
+                <div className="z-20 absolute h-80 w-10 right-2">
                     <div className="flex h-80">
                         <div 
-                            className={"m-auto bg-white cursor-pointer" + (currentPictureIndex != images.length-1 ? " " : " hidden")}
+                            className={"m-auto cursor-pointer" + (currentPictureIndex != images.length-1 ? " " : " hidden")}
                             onClick={() => {onClickNextImage()}}
                         >
                             {/*
                             <Image src={arrowRight} loader={websiteImageLoader} alt="R" className="w-fit h-fit z-20" width={10} height={10}/>
-                            */}
                             <Image src={arrowRight} width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
+                            */}
+
+                            <Image src="rightArrow.png" width={10} height={10} loader={websiteImageLoader} alt="Bruin Bunk"  className={" w-10 h-10 bg-transparent"}/>
 
                         </div>
                     </div>

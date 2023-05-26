@@ -72,7 +72,7 @@ const Modal = (props: ModalProps) => {
 
     return (
         <div className="bg-black fixed h-screen w-screen text-white z-40" onClick={() => {}}>
-            <button className="p-4 text-lg fixed" onClick={() => {setModalShown(false)}}>
+            <button className="p-4 text-lg fixed z-50" onClick={() => {setModalShown(false)}}>
                 X Close
             </button>
             <div className="flex">
@@ -105,7 +105,7 @@ const Modal = (props: ModalProps) => {
                                     onClick={() => {}}
                                 />
                                 <div>
-                                <div className="opacity-0 group-hover:opacity-100 absolute bg-gradient-to-t from-black w-full bottom-0 h-1/3">
+                                <div className="opacity-0 group-hover:opacity-100 absolute bg-gradient-to-t from-black w-full bottom-0 h-fit">
                                     
                                     <div className={"flex h-full p-4 opacity-100" }>
                                         <div className="m-auto w-full text-white">

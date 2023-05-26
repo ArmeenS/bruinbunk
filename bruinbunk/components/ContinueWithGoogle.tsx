@@ -1,6 +1,6 @@
 // Component responsible for signing in with Google
 import React from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { app } from "../backend/index.js"
 import Image from 'next/image';
 import Google from "../public/googlebutton.svg"

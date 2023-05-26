@@ -170,21 +170,65 @@ function Hotbar(props: propsType) {
 
 
     return (
-        <div id={"home"} className="hidden bg-white border-b md:block sticky top-0 w-full py-2 sm:top-0 z-30">
-            <div className="sm:fit sm:flex m-auto sm:flex-row ">
+        <div id={"home"} className="block bg-white md:border-b sticky top-0 w-full py-2 sm:top-0 z-30">
+            <div className="block sm:fit sm:flex m-auto sm:flex-row ">
                 
-                <div className={"sm:flex h-12/12 w-1/2" }>
+                <div className={"hidden sm:flex h-12/12 w-1/2" }>
                     {/*
                     <Image src={BruinBunkLogo} alt="Bruin Bunk" className={" w-40 ml-4"}/>
                     */}
                     <Image src="BruinBunkLogo.svg" width={100} height={100} loader={externalImageLoader} alt="Bruin Bunk"  className={" w-40 ml-4"}/>
 
                 </div>
+                <div className={"flex flex-row sm:hidden h-12/12 border-b top-0 " }>
+                    {/*
+                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className={" w-40 ml-4"}/>
+                    */}
+                    <Image src="BruinBunkLogo.svg" width={100} height={100} loader={externalImageLoader} alt="Bruin Bunk"  className={"  ml-4 w-5/12"}/>
+                    {
+                        isUserSignedIn ?
+                        (
+                            <div className="flex flex-row w-7/12 text-center md:hidden"> 
+                                <div className="m-auto flex-row flex">
+                                    <div className={"flex h-12/12 pr-4"}>
+                                        <div className="m-auto">
+                                            <Image 
+                                                src={auth.currentUser.photoURL}
+                                                className="h-10 w-10 rounded-full"
+                                                loader={externalGoogleImageLoader}
+                                                width={100}
+                                                height={100}
+                                                alt="pfp"
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className={"flex h-12/12 pr-4" }>
+                                        <div className="m-auto">
+                                            <div 
+                                                onClick={googleSignOut} 
+                                                className="cursor-pointer text-gray-400 hover:text-gray-600"
+                                            > 
+                                                Log out
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                        :
+                        (
+                            <div className="flex flex-row w-7/12 text-center md:hidden">
+                                <ContinueWithGoogle callback={() => {}} setUserAuthStatus={setUserAuthStatus}/>
+                            </div>
+                        )
+                    }
+                </div>
 
                 {
                     !isSearchMode ? 
                     (
-                    <div className="flex h-10 ">
+                    <div className="mt-2 md:m-auto flex h-fit block">
                         <div className="m-auto">
                             <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat', fontSize: 20}} onClick={() => {setSearchMode(true)}}>
                                 Search
@@ -194,14 +238,14 @@ function Hotbar(props: propsType) {
                     )
                     :
                     (
-                    <div className="flex h-10">
-                        <div className="m-auto">
-                            <div className="py-1 px-8 flex flex-row space-x-5 border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
+                    <div className="mt-2 md:mt-0 flex h-fit md:h-10 ">
+                        <div className="overflow-x-scroll md:overflow-visible m-auto">
+                            <div className=" py-1 px-8 flex flex-row space-x-5 md:border md:border-2 md:shadow-md md:border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
 
                                 <div className="flex h-12/12">
                                     <div className="m-auto">
                                         <Dropdown
-                                            width="12em"
+                                            width={"12em"}
                                             options={roomOptions}
                                             multiselect={true}
                                             selectedOptions={selectedRoomOptionsIndex}
@@ -238,7 +282,7 @@ function Hotbar(props: propsType) {
 
                 }
                 
-                <div className="sm:flex w-1/2 place-content-end space-x-10 h-12/12 mr-4">
+                <div className="block w-full mt-4 pb-4 md:pb-0 md:m-auto  sm:flex md:w-1/2 place-content-end space-x-10 h-12/12 md:mr-4">
                     <div className={"flex h-12/12"}>
                         <div className={"m-auto" + (isSearchMode ? " hidden" : "")}>
                             <a 
@@ -255,7 +299,7 @@ function Hotbar(props: propsType) {
                     {
                         isUserSignedIn ?
                         (
-                            <div className="flex">   
+                            <div className="hidden md:flex">   
                             <div className={"flex h-12/12 pr-4"}>
                                 <div className="m-auto">
                                     <Image 
@@ -283,7 +327,13 @@ function Hotbar(props: propsType) {
                         )
                         :
                         (
-                            <ContinueWithGoogle callback={() => {}} setUserAuthStatus={setUserAuthStatus}/>
+                            <div className={"flex h-12/12"}>
+                                <div className={"m-auto"}>
+                                    <div className="hidden flex flex-row w-fit text-center md:block">
+                                        <ContinueWithGoogle callback={() => {}} setUserAuthStatus={setUserAuthStatus}/>
+                                    </div>
+                                </div>
+                            </div>
                         )
                     }
                     

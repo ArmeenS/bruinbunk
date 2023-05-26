@@ -99,6 +99,7 @@ function Portfolio() {
         if (auth.currentUser) {
             setModalShown(true);
         } else {
+            //setModalShown(true);
             setShowingSignUpPopup(true);
         }
 
@@ -137,6 +138,7 @@ function Portfolio() {
                 <div className={ isShowingSignUpPopup ? "" : "hidden"}>
                     <SignInPopup setUserAuthStatus={setUserAuthStatus} setShowingSignUpPopup={setShowingSignUpPopup}/>
                 </div>
+                
                 <div className="font-figmaMonts hidden md:flex bg-gray-200 w-full py-4 border-b flex-row" style={{fontFamily:'Montserrat'}}>
                     <div className="w-1/2 pl-8">
                         Introducing BruinBunk, UCLA's Sublease Marketplace
@@ -151,22 +153,16 @@ function Portfolio() {
                     setUserAuthStatus={setUserAuthStatus}
                 />
                 
-                <div className="md:hidden md:absolute bg-gray-200 w-full">
+                {/*
+                <div className="md:hidden md:absolute bg-white mt-4 border-b w-full">
                     
                     <div className="w-fit m-auto">
                         
-                        <Image src="BruinBunkLogo.svg" width={300} height={300} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
-                        
-                        {/*
-                        <Image src={BruinBunkLogo} width={300} height={300} alt="Bruin Bunk"  className=""/>
-                        */}
-                        <div className="px-4 font-bold w-fit m-auto pb-2">
-                            UCLA's Sublease Marketplace
-                        </div>
+                        <Image src="BruinBunkLogo.svg" width={300} height={300} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>                     
                         
                     </div>
-
                 </div>
+                */}
                 
                 <ListingManager 
                 listings={shownlistings} 
@@ -175,6 +171,11 @@ function Portfolio() {
                 onListingClick={onListingClick}
                 />
                 {/*<Waffle/>*/}
+
+                <div className="bg-bruinblue md:hidden py-4 text-white">
+                    <div className="m-auto w-fit font-bold text-3xl"> Contact </div>
+                    <div className="m-auto w-fit"> bruin@bruinbunk.com</div>
+                </div>
                 
             </div>
             
