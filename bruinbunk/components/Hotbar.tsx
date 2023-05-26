@@ -3,11 +3,10 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import BruinBunkLogo from "../public/bruinbunk.svg"; // used for local images
-import Google from "../public/googlebutton.svg"
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../backend/index.js"
-
+import { getAuth, signOut } from "firebase/auth";
 import Dropdown from "./Dropdown";
+import ContinueWithGoogle from './ContinueWithGoogle';
 
 const externalImageLoader = ({ src }: { src: string }) =>
   `https://BruinBunk.com/${src}`;
@@ -30,30 +29,69 @@ interface propsType {
     setShownListings: any
     isSearchMode: any
     setSearchMode: any
+    setUserAuthStatus: any
 }
 
 function Hotbar(props: propsType) {
-    const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
     
     const [ selectedRoomOptionsIndex, setSelectedRoomOptionsIndex ] = useState([]);
     const [ selectedMonthOptionsIndex, setSelectedMonthOptionsIndex ] = useState([]);
 
     // userAuthStatus is just a boolean used to cause our page to update its state
-    const [ userAuthStatus, setUserAuthStatus] = useState<Boolean>(false);
 
     console.log(auth);
     const isUserSignedIn: boolean = (auth.currentUser != null);
 
-    const { setShownListings, masterListing, isSearchMode, setSearchMode } = props;
+    const { setShownListings, masterListing, isSearchMode, setSearchMode, setUserAuthStatus } = props;
+
+    const monthMapping = (shortMonth: any) => {
+        if (shortMonth == "jan") return "JANUARY";
+        if (shortMonth == "feb") return "FEBURARY";
+        if (shortMonth == "mar") return "MARCH";
+        if (shortMonth == "apr") return "APRIL";
+        if (shortMonth == "may") return "MAY";
+        if (shortMonth == "jun") return "JUNE";
+        if (shortMonth == "jul") return "JULY";
+        if (shortMonth == "aug") return "AUGUST";
+        if (shortMonth == "sep") return "SEPTEMBER";
+        if (shortMonth == "oct") return "OCTOBER";
+        if (shortMonth == "nov") return "NOVEMBER";
+        if (shortMonth == "dec") return "DECEMBER";
+    }
+
+    const roomMapping = (shortRoom: any) => {
+        if (shortRoom == "1B/1B") return "1 Bed 1 Bath";
+        if (shortRoom == "2B/1B") return "2 Bed 1 Bath";
+        if (shortRoom == "1B/2B") return "1 Bed 2 Bath";
+        if (shortRoom == "2B/2B") return "2 Bed 2 Bath";
+        if (shortRoom == "3B/2B") return "3 Bed 2 Bath";
+        if (shortRoom == "3B/1B") return "3 Bed 1 Bath";
+        if (shortRoom == "4B/2B") return "4 Bed 2 Bath";
+        if (shortRoom == "4B/3B") return "4 Bed 3 Bath";
+        if (shortRoom == "4B/4B") return "4 Bed 4 Bath";
+        if (shortRoom == "5B/3B") return "5 Bed 3 Bath";
+        if (shortRoom == "5B/5B") return "5 Bed 5 Bath";
+        if (shortRoom == "6B/6B") return "6 Bed 6 Bath";
+    }
 
     let roomOptions: Array<string> = [
         "1B/1B",
         "2B/1B",
         "2B/2B",
+        "1B/2B",
+        "3B/1B",
         "3B/2B",
         "3B/3B",
+        "4B/2B",
+        "4B/3B",
+        "4B/4B",
+        "5B/3B",
+        "5B/5B",
+        "6B/6B"
     ];
+
+    //roomOptions = roomOptions.map((value: string) => (roomMapping(value)))
 
     let monthOptions: Array<string> = [          
         "jun", 
@@ -61,7 +99,22 @@ function Hotbar(props: propsType) {
         "aug", 
         "sep"             
     ];
+    monthOptions = monthOptions.map((value: string) => (monthMapping(value)))
 
+
+    const googleSignOut = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("Signed out");
+            setUserAuthStatus((prevState: boolean) => (!prevState));
+
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
+    
+    
     const filterListings = (listings: any, type: string[], months: string[], min: number, max: number) => {
 
         let filtered: any = [];
@@ -113,57 +166,25 @@ function Hotbar(props: propsType) {
     }, [selectedMonthOptionsIndex]);
     */
 
-    function googleLogin() {
-        signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          //const token = credential.accessToken;
-          // The signed-in user info.
-          const user = result.user;
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
-          setUserAuthStatus((prevState: boolean) => (!prevState));
-        }).catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          
-          // ...
-        });
-        console.log("Signing in with Google");
-    }
-
-    const googleSignOut = () => {
-        signOut(auth).then(() => {
-            // Sign-out successful.
-            console.log("Signed out");
-            setUserAuthStatus((prevState: boolean) => (!prevState));
-
-        }).catch((error) => {
-            // An error happened.
-        });
-    }
+    
 
 
     return (
         <div id={"home"} className="hidden bg-white border-b md:block sticky top-0 w-full py-2 sm:top-0 z-30">
             <div className="sm:fit sm:flex m-auto sm:flex-row ">
                 
-                <div className={"w-1/2 sm:flex h-12/12" }>
-                    
-                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className={" w-2/5" + (isSearchMode ? " hidden" : "")}/>
-                
+                <div className={"sm:flex h-12/12 w-1/2" }>
+                    {/*
+                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className={" w-40 ml-4"}/>
+                    */}
+                    <Image src="BruinBunkLogo.svg" width={100} height={100} loader={externalImageLoader} alt="Bruin Bunk"  className={" w-40 ml-4"}/>
+
                 </div>
 
                 {
                     !isSearchMode ? 
                     (
-                    <div className="flex h-12/12 ">
+                    <div className="flex h-10 ">
                         <div className="m-auto">
                             <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat', fontSize: 20}} onClick={() => {setSearchMode(true)}}>
                                 Search
@@ -173,14 +194,14 @@ function Hotbar(props: propsType) {
                     )
                     :
                     (
-                    <div className="flex h-12/12">
+                    <div className="flex h-10">
                         <div className="m-auto">
                             <div className="py-1 px-8 flex flex-row space-x-5 border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
 
                                 <div className="flex h-12/12">
                                     <div className="m-auto">
                                         <Dropdown
-                                            width="8em"
+                                            width="12em"
                                             options={roomOptions}
                                             multiselect={true}
                                             selectedOptions={selectedRoomOptionsIndex}
@@ -193,7 +214,7 @@ function Hotbar(props: propsType) {
                                 <div className="flex h-12/12 ">
                                     <div className="m-auto">
                                         <Dropdown
-                                            width="8em"
+                                            width="12em"
                                             options={monthOptions}
                                             multiselect={true}
                                             selectedOptions={selectedMonthOptionsIndex}
@@ -218,8 +239,8 @@ function Hotbar(props: propsType) {
                 }
                 
                 <div className="sm:flex w-1/2 place-content-end space-x-10 h-12/12 mr-4">
-                    <div className={"flex h-12/12" + (isSearchMode ? " hidden" : "")}>
-                        <div className="m-auto">
+                    <div className={"flex h-12/12"}>
+                        <div className={"m-auto" + (isSearchMode ? " hidden" : "")}>
                             <a 
                                 className="rounded-full py-3 px-4 border border-blue-600 border-2 shadow-md hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400"
                                 style={{fontFamily:'Montserrat'}}
@@ -235,7 +256,7 @@ function Hotbar(props: propsType) {
                         isUserSignedIn ?
                         (
                             <div className="flex">   
-                            <div className={"flex h-12/12 pr-4" + (isSearchMode ? " hidden" : "")}>
+                            <div className={"flex h-12/12 pr-4"}>
                                 <div className="m-auto">
                                     <Image 
                                         src={auth.currentUser.photoURL}
@@ -243,11 +264,12 @@ function Hotbar(props: propsType) {
                                         loader={externalGoogleImageLoader}
                                         width={100}
                                         height={100}
+                                        alt="pfp"
                                     />
 
                                 </div>
                             </div>
-                            <div className={"flex h-12/12 pr-4" + (isSearchMode ? " hidden" : "")}>
+                            <div className={"flex h-12/12 pr-4" }>
                                 <div className="m-auto">
                                     <div 
                                         onClick={googleSignOut} 
@@ -261,12 +283,7 @@ function Hotbar(props: propsType) {
                         )
                         :
                         (
-                            <div className={"flex h-12/12" + (isSearchMode ? " hidden" : "")}>
-                                <div className="m-auto">
-                                    <Image src={Google} height={40} alt="Google " className="cursor-pointer" onClick={googleLogin} content="Google"/>
-
-                                </div>
-                            </div>
+                            <ContinueWithGoogle callback={() => {}} setUserAuthStatus={setUserAuthStatus}/>
                         )
                     }
                     

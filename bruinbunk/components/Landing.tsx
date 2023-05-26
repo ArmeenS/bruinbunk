@@ -9,6 +9,7 @@ import BruinBunkSublet from "../public/BruinBunkSublet.svg"; // used for local i
 import BruinBunkLogo from "../public/BruinBunkLogo.svg"; // used for local images
 import React, { useState, useEffect } from 'react'
 import { doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { getAuth, signOut } from "firebase/auth";
 
 import ListingManager from './ListingManager';
 import Hotbar from './Hotbar';
@@ -16,6 +17,7 @@ import Contact from './Contact';
 import Waffle from './Waffle';
 import Image from 'next/image'
 import Modal from './Modal';
+import SignInPopup from './SignInPopup';
 
 const db = getFirestore(app);
 
@@ -77,6 +79,8 @@ interface ListingType {
 }
 
 function Portfolio() {
+    const auth = getAuth(app);
+
     const initialValues: EmailSignUpData = { email: '' };
     const [successfulEmailSubmission, setSuccessfulEmailSubmission] = useState<boolean>(false);
     const [shownlistings, setShownListings] = useState<Array<ListingType>>([]);
@@ -85,7 +89,20 @@ function Portfolio() {
     const [selectedListing, setSelectedListing] = useState<number>(0);
     const [isSearchMode, setSearchMode] = useState<boolean>(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+    const [isShowingSignUpPopup, setShowingSignUpPopup] = useState<boolean>(false);
+    const [ userAuthStatus, setUserAuthStatus] = useState<Boolean>(false);
 
+    // DO FULL MONTH NAME IN CAPS
+
+    // when a listing is clicked determine if the user is signed in
+    const onListingClick = () => {
+        if (auth.currentUser) {
+            setModalShown(true);
+        } else {
+            setShowingSignUpPopup(true);
+        }
+
+    }
     
 
     useEffect(() => { // Fetch listings from Firebase
@@ -117,7 +134,10 @@ function Portfolio() {
                         selectedImageIndex={selectedImageIndex}
                     />
                 </div>
-                <div className="hidden md:flex bg-gray-200 w-full py-4 border-b flex-row" style={{fontFamily:'Montserrat'}}>
+                <div className={ isShowingSignUpPopup ? "" : "hidden"}>
+                    <SignInPopup setUserAuthStatus={setUserAuthStatus} setShowingSignUpPopup={setShowingSignUpPopup}/>
+                </div>
+                <div className="font-figmaMonts hidden md:flex bg-gray-200 w-full py-4 border-b flex-row" style={{fontFamily:'Montserrat'}}>
                     <div className="w-1/2 pl-8">
                         Introducing BruinBunk, UCLA's Sublease Marketplace
                     </div>
@@ -128,17 +148,18 @@ function Portfolio() {
                 <Hotbar 
                     masterListing={masterListings} setShownListings={setShownListings}
                     isSearchMode={isSearchMode} setSearchMode={setSearchMode}
+                    setUserAuthStatus={setUserAuthStatus}
                 />
                 
                 <div className="md:hidden md:absolute bg-gray-200 w-full">
                     
                     <div className="w-fit m-auto">
-                        {/*
+                        
                         <Image src="BruinBunkLogo.svg" width={300} height={300} loader={externalImageLoader} alt="Bruin Bunk"  className=""/>
-                        */}
                         
+                        {/*
                         <Image src={BruinBunkLogo} width={300} height={300} alt="Bruin Bunk"  className=""/>
-                        
+                        */}
                         <div className="px-4 font-bold w-fit m-auto pb-2">
                             UCLA's Sublease Marketplace
                         </div>
@@ -147,7 +168,12 @@ function Portfolio() {
 
                 </div>
                 
-                <ListingManager listings={shownlistings} setModalShown={setModalShown} setSelectedListing={setSelectedListing}/>
+                <ListingManager 
+                listings={shownlistings} 
+                setModalShown={setModalShown} 
+                setSelectedListing={setSelectedListing}
+                onListingClick={onListingClick}
+                />
                 {/*<Waffle/>*/}
                 
             </div>

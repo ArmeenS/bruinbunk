@@ -11,7 +11,7 @@ function MultiSelectableItem(props: any) {
         <div
             style={{
                 cursor: "pointer",
-                backgroundColor: (props.selected ? "#eef4fa" : "white"),
+                backgroundColor: ( "white"),
                 padding: "10px 15px 10px 10px",
             }}
 
@@ -49,7 +49,7 @@ function SingleSelectableItem(props) {
         <div
             style={{
                 cursor: "pointer",
-                backgroundColor: (props.selected ? "#eef4fa" : "white"),
+                backgroundColor: ( "white"),
                 padding: "10px 15px 10px 10px",
             }}
         >
@@ -118,6 +118,7 @@ function mutliselectList(props) {
             if (unselected_idx !== -1) {
                 // there is a non selected item
 
+                // @ts-ignore
                 let newSelectedOptionsIndex = [...Array(OPTIONS_LEN).keys()] // list of numbers from 0 to OPTIONS_LEN
 
                 // Update hashmap so that all options indexs are selected

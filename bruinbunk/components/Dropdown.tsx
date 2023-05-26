@@ -48,6 +48,7 @@ function Dropdown(props) {
                 position: "static",
                 display: "inline-block",
             }}
+            className=" rounded-full"
         >    
             <fieldset // this field set gives us the text in the top corner
                 style={{
@@ -63,7 +64,7 @@ function Dropdown(props) {
                 
                 <div // The actual text inside the dropdown
                     style={{
-                        backgroundColor: "white",
+                        
                         border: "0px",
                         cursor: "pointer",
                         fontFamily: "Arial, Helvetica, sans-serif",
@@ -82,17 +83,25 @@ function Dropdown(props) {
                 >
                 {
                     isSelected ? 
-                        <IoMdArrowDropup
-                            style={{
-                                
-                            }}
-                        />
+                        <div className={"flex h-12/12 pr-4"}>
+                        <div className="m-auto">
+                            <IoMdArrowDropup
+                                style={{
+                                    
+                                }}
+                            />
+                        </div>
+                        </div>
                     :
-                        <IoMdArrowDropdown
-                            style={{
-                                display: "inline-block",
-                            }}
-                        />
+                        <div className={"flex h-12/12 pr-4"}>
+                        <div className="m-auto">
+                            <IoMdArrowDropdown
+                                style={{
+                                    display: "inline-block",
+                                }}
+                            />
+                        </div>
+                        </div>
                 }
                 </div>
                 

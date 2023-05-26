@@ -13,7 +13,12 @@ module.exports = {
       }
     },
     fontFamily: {
-      figmaMonts: ["Montserrat"],
+      figmaMonts: [""],
+    },
+  },
+  variants: {
+    extend: {
+        display: ["group-hover"],
     },
   },
   plugins: [],

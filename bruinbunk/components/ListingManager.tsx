@@ -17,10 +17,11 @@ interface propsInterface {
     listings: Array<ListingType>
     setModalShown: any
     setSelectedListing: any
+    onListingClick: any
 }
 
 const ListingManager = (props: propsInterface) => {
-    let { listings, setModalShown, setSelectedListing } = props;
+    let { listings, setModalShown, setSelectedListing, onListingClick } = props;
     return (
         <div className="flex flex-col flex-wrap md:flex-row md:px-4 md:py-4 justify-center">
             {listings.map(function(listing, index){
@@ -28,6 +29,7 @@ const ListingManager = (props: propsInterface) => {
                     setModalShown={setModalShown} 
                     listingInfo={listing} 
                     setSelectedListing={setSelectedListing}
+                    onListingClick={onListingClick}
                 />;
             })}    
         </div>
