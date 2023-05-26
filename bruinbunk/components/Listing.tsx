@@ -49,7 +49,7 @@ const Listing = (props: propsInterface) => {
     }
 
     return (
-        <div className="md:w-80 md:h-120 m-2 rounded-[12px] ">
+        <div className="md:w-80 md:h-120 m-4 mb-6 rounded-[12px] ">
             {/*
             <img className="rounded-[12px] object-cover" 
                 src={images[0]} 
@@ -91,25 +91,25 @@ const Listing = (props: propsInterface) => {
             </div>
 
             
-            <div className="pt-2 px-4">
-                <div className="font-bold">
+            <div className="pt-2.5 px-2">
+                <div className="font-bold" style={{fontFamily:'Montserrat'}}>
                     {address}
                 </div>
-                <div className="">
+                <div className="" style={{fontFamily:'Montserrat'}}>
                     {type}
                 </div>
-                <div className="">
+                <div className="" style={{fontFamily:'Montserrat'}}>
                     {months[0]} - {months[months.length-1]}
                 </div>
                 { rent != -1 ?
                     (
-                    <div className="font-bold">
-                        ${rent}/month
+                    <div className="" style={{fontFamily:'Montserrat'}}>
+                        <b>${rent}</b> / month
                     </div>   
                     )
                     :
                     (
-                    <div className="font-bold">
+                    <div className="font-bold" style={{fontFamily:'Montserrat'}}>
                         Rent negotiable
                     </div>   
                     )  
