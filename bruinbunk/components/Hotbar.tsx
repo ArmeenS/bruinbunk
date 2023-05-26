@@ -4,13 +4,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import BruinBunkLogo from "../public/bruinbunk.svg"; // used for local images
 import Google from "../public/googlebutton.svg"
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../backend/index.js"
 
 import Dropdown from "./Dropdown";
 
 const externalImageLoader = ({ src }: { src: string }) =>
   `https://BruinBunk.com/${src}`;
+
+const externalGoogleImageLoader = ({ src }: { src: string }) =>
+  `${src}`;
 
 interface ListingType {
     address: string;
@@ -32,11 +35,15 @@ interface propsType {
 function Hotbar(props: propsType) {
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
-    console.log(auth.currentUser);
+    
     const [ selectedRoomOptionsIndex, setSelectedRoomOptionsIndex ] = useState([]);
     const [ selectedMonthOptionsIndex, setSelectedMonthOptionsIndex ] = useState([]);
 
-    
+    // userAuthStatus is just a boolean used to cause our page to update its state
+    const [ userAuthStatus, setUserAuthStatus] = useState<Boolean>(false);
+
+    console.log(auth);
+    const isUserSignedIn: boolean = (auth.currentUser != null);
 
     const { setShownListings, masterListing, isSearchMode, setSearchMode } = props;
 
@@ -116,6 +123,7 @@ function Hotbar(props: propsType) {
           const user = result.user;
           // IdP data available using getAdditionalUserInfo(result)
           // ...
+          setUserAuthStatus((prevState: boolean) => (!prevState));
         }).catch((error) => {
           // Handle Errors here.
           const errorCode = error.code;
@@ -128,21 +136,34 @@ function Hotbar(props: propsType) {
           // ...
         });
         console.log("Signing in with Google");
-      }
+    }
+
+    const googleSignOut = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("Signed out");
+            setUserAuthStatus((prevState: boolean) => (!prevState));
+
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
 
     return (
-        <div id={"home"} className="hidden bg-white border-b md:block sticky top-0 w-full sm:top-0 z-20">
+        <div id={"home"} className="hidden bg-white border-b md:block sticky top-0 w-full py-2 sm:top-0 z-30">
             <div className="sm:fit sm:flex m-auto sm:flex-row ">
-                <div className="sm:flex w-1/2 h-full mt-1">
-                        
-                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className=" w-2/5"/>
-                        
+                
+                <div className={"w-1/2 sm:flex h-12/12" }>
+                    
+                    <Image src={BruinBunkLogo} alt="Bruin Bunk" className={" w-2/5" + (isSearchMode ? " hidden" : "")}/>
+                
                 </div>
 
                 {
                     !isSearchMode ? 
                     (
-                    <div className="flex h-12/12">
+                    <div className="flex h-12/12 ">
                         <div className="m-auto">
                             <button className="rounded-full py-2 px-10 border border-2 shadow-md border-blue-600 hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400" style={{fontFamily:'Montserrat', fontSize: 20}} onClick={() => {setSearchMode(true)}}>
                                 Search
@@ -152,9 +173,9 @@ function Hotbar(props: propsType) {
                     )
                     :
                     (
-                    <div className="flex h-12/12 ">
+                    <div className="flex h-12/12">
                         <div className="m-auto">
-                            <div className="py-1 flex flex-row border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
+                            <div className="py-1 px-8 flex flex-row space-x-5 border border-2 shadow-md border-blue-600 rounded-full px-2" style={{fontFamily:'Montserrat'}}>
 
                                 <div className="flex h-12/12">
                                     <div className="m-auto">
@@ -197,7 +218,7 @@ function Hotbar(props: propsType) {
                 }
                 
                 <div className="sm:flex w-1/2 place-content-end space-x-10 h-12/12 mr-4">
-                    <div className="flex h-12/12">
+                    <div className={"flex h-12/12" + (isSearchMode ? " hidden" : "")}>
                         <div className="m-auto">
                             <a 
                                 className="rounded-full py-3 px-4 border border-blue-600 border-2 shadow-md hover:border-blue-400 text-blue-600 hover:text-blue-400 font-bold cursor-pointer hover:text-blue-400"
@@ -209,17 +230,48 @@ function Hotbar(props: propsType) {
                             </a>
                         </div>
                     </div>
-                    <div className="flex h-12/12">
-                        <div className="m-auto">
-                            
-                            <button 
-                                className="py-4 my-auto hover:text-gray-300 text-gray-500 cursor-pointer hover:text-gray-300"
-                                onClick={googleLogin}
-                            >
-                                <Image src={Google} height={40} alt="Google " className="" content="Google"/>
-                            </button>
-                        </div>
-                    </div>
+
+                    {
+                        isUserSignedIn ?
+                        (
+                            <div className="flex">   
+                            <div className={"flex h-12/12 pr-4" + (isSearchMode ? " hidden" : "")}>
+                                <div className="m-auto">
+                                    <Image 
+                                        src={auth.currentUser.photoURL}
+                                        className="h-10 w-10 rounded-full"
+                                        loader={externalGoogleImageLoader}
+                                        width={100}
+                                        height={100}
+                                    />
+
+                                </div>
+                            </div>
+                            <div className={"flex h-12/12 pr-4" + (isSearchMode ? " hidden" : "")}>
+                                <div className="m-auto">
+                                    <div 
+                                        onClick={googleSignOut} 
+                                        className="cursor-pointer text-gray-400 hover:text-gray-600"
+                                    > 
+                                        Log out
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        )
+                        :
+                        (
+                            <div className={"flex h-12/12" + (isSearchMode ? " hidden" : "")}>
+                                <div className="m-auto">
+                                    <Image src={Google} height={40} alt="Google " className="cursor-pointer" onClick={googleLogin} content="Google"/>
+
+                                </div>
+                            </div>
+                        )
+                    }
+                    
+                    
+
                         
                 </div>
                 

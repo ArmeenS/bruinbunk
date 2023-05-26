@@ -3,5 +3,13 @@ module.exports = {
     images: {
         loader: 'akamai',
         path: '',
+        remotePatterns: [
+            {
+              protocol: 'https',
+              hostname: 'firebasestorage.googleapis.com',
+              port: '',
+              pathname: '/**',
+            },
+        ],
     },
 }

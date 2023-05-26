@@ -73,6 +73,7 @@ interface ListingType {
     notes: string;
     rent: number;
     type: string;
+    num: number;
 }
 
 function Portfolio() {
@@ -81,8 +82,9 @@ function Portfolio() {
     const [shownlistings, setShownListings] = useState<Array<ListingType>>([]);
     const [masterListings, setMasterListings] = useState<Array<ListingType>>([]);
     const [isModalShown, setModalShown] = useState<boolean>(false);
-    const [selectedListing, setSelectedListing] = useState<number>(-1);
+    const [selectedListing, setSelectedListing] = useState<number>(0);
     const [isSearchMode, setSearchMode] = useState<boolean>(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
     
 
@@ -99,11 +101,21 @@ function Portfolio() {
         getListings().catch(console.error);
     }, []);
 
+    useEffect(() => {
+        setSelectedImageIndex(0);
+    }, [selectedListing])
+
     return (
         <div className="">
             <div className="">
                 <div className={ isModalShown ? "" : "hidden" }>
-                    <Modal setModalShown={setModalShown}/>
+                    <Modal 
+                        setModalShown={setModalShown} 
+                        selectedListing={selectedListing} 
+                        masterListings={masterListings}
+                        setSelectedImageIndex={setSelectedImageIndex}
+                        selectedImageIndex={selectedImageIndex}
+                    />
                 </div>
                 <div className="hidden md:flex bg-gray-200 w-full py-4 border-b flex-row" style={{fontFamily:'Montserrat'}}>
                     <div className="w-1/2 pl-8">
@@ -135,7 +147,7 @@ function Portfolio() {
 
                 </div>
                 
-                <ListingManager listings={shownlistings}/>
+                <ListingManager listings={shownlistings} setModalShown={setModalShown} setSelectedListing={setSelectedListing}/>
                 {/*<Waffle/>*/}
                 
             </div>

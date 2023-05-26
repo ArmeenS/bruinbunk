@@ -10,20 +10,26 @@ interface ListingType {
     notes: string;
     rent: number;
     type: string;
+    num: number;
 }
 
 interface propsInterface {
     listings: Array<ListingType>
+    setModalShown: any
+    setSelectedListing: any
 }
 
 const ListingManager = (props: propsInterface) => {
-    let { listings } = props;
+    let { listings, setModalShown, setSelectedListing } = props;
     return (
-        <div className="flex flex-col w-fit m-auto md:flex-row md:space-x-4 md:px-4 md:py-4">
+        <div className="flex flex-col flex-wrap md:flex-row md:px-4 md:py-4 justify-center">
             {listings.map(function(listing, index){
-                return <Listing key={ index } listingInfo={listing}/>;
-            })}
-            
+                return <Listing key={ index } 
+                    setModalShown={setModalShown} 
+                    listingInfo={listing} 
+                    setSelectedListing={setSelectedListing}
+                />;
+            })}    
         </div>
     );
 }
