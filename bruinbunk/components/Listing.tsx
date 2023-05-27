@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
-import arrowLeft from "../public/leftArrow.png"; // used for local images
-import arrowRight from "../public/rightArrow.png"; // used for local images
+import arrowLeft from "../public/left.svg"; // used for local images
+import arrowRight from "../public/right.svg"; // used for local images
 
 interface ListingType {
     address: string;
@@ -34,33 +34,33 @@ const Listing = (props: propsInterface) => {
     let { setModalShown, setSelectedListing, onListingClick } = props;
 
     const monthMapping = (shortMonth: any) => {
-        if (shortMonth == "jan") return "JANUARY";
-        if (shortMonth == "feb") return "FEBURARY";
-        if (shortMonth == "mar") return "MARCH";
-        if (shortMonth == "apr") return "APRIL";
-        if (shortMonth == "may") return "MAY";
-        if (shortMonth == "jun") return "JUNE";
-        if (shortMonth == "jul") return "JULY";
-        if (shortMonth == "aug") return "AUGUST";
-        if (shortMonth == "sep") return "SEPTEMBER";
-        if (shortMonth == "oct") return "OCTOBER";
-        if (shortMonth == "nov") return "NOVEMBER";
-        if (shortMonth == "dec") return "DECEMBER";
+        if (shortMonth == "jan") return "January";
+        if (shortMonth == "feb") return "February";
+        if (shortMonth == "mar") return "March";
+        if (shortMonth == "apr") return "April";
+        if (shortMonth == "may") return "May";
+        if (shortMonth == "jun") return "June";
+        if (shortMonth == "jul") return "July";
+        if (shortMonth == "aug") return "August";
+        if (shortMonth == "sep") return "September";
+        if (shortMonth == "oct") return "October";
+        if (shortMonth == "nov") return "November";
+        if (shortMonth == "dec") return "December";
     }
 
     const roomMapping = (shortRoom: any) => {
-        if (shortRoom == "1B/1B") return "1 Bed 1 Bath";
-        if (shortRoom == "2B/1B") return "2 Bed 1 Bath";
-        if (shortRoom == "1B/2B") return "1 Bed 2 Bath";
-        if (shortRoom == "2B/2B") return "2 Bed 2 Bath";
-        if (shortRoom == "3B/2B") return "3 Bed 2 Bath";
-        if (shortRoom == "3B/1B") return "3 Bed 1 Bath";
-        if (shortRoom == "4B/2B") return "4 Bed 2 Bath";
-        if (shortRoom == "4B/3B") return "4 Bed 3 Bath";
-        if (shortRoom == "4B/4B") return "4 Bed 4 Bath";
-        if (shortRoom == "5B/3B") return "5 Bed 3 Bath";
-        if (shortRoom == "5B/5B") return "5 Bed 5 Bath";
-        if (shortRoom == "6B/6B") return "6 Bed 6 Bath";
+        if (shortRoom == "1B/1B") return "1 Bed / 1 Bath";
+        if (shortRoom == "2B/1B") return "2 Bed / 1 Bath";
+        if (shortRoom == "1B/2B") return "1 Bed / 2 Bath";
+        if (shortRoom == "2B/2B") return "2 Bed / 2 Bath";
+        if (shortRoom == "3B/2B") return "3 Bed / 2 Bath";
+        if (shortRoom == "3B/1B") return "3 Bed / 1 Bath";
+        if (shortRoom == "4B/2B") return "4 Bed / 2 Bath";
+        if (shortRoom == "4B/3B") return "4 Bed / 3 Bath";
+        if (shortRoom == "4B/4B") return "4 Bed / 4 Bath";
+        if (shortRoom == "5B/3B") return "5 Bed / 3 Bath";
+        if (shortRoom == "5B/5B") return "5 Bed / 5 Bath";
+        if (shortRoom == "6B/6B") return "6 Bed / 6 Bath";
     }
 
 
@@ -104,7 +104,7 @@ const Listing = (props: propsInterface) => {
                             {/*
                             <Image src={arrowLeft} loader={websiteImageLoader}  alt="L" className="w-fit h-fit z-20" width={10} height={10}/>
                             */}
-                            <Image src="arrowLeft.png" width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
+                            <Image src={arrowLeft} width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
 
                         </div>
                     </div>
@@ -118,7 +118,7 @@ const Listing = (props: propsInterface) => {
                             {/*
                             <Image src={arrowRight} loader={websiteImageLoader} alt="R" className="w-fit h-fit z-20" width={10} height={10}/>
                             */}
-                            <Image src="arrowLeft.png" width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
+                            <Image src={arrowRight} width={20} height={20} loader={websiteImageLoader} alt="Bruin Bunk"  className=""/>
 
                         </div>
                     </div>

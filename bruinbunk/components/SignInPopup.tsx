@@ -20,7 +20,7 @@ const SignInPopup = (props: SignInPopupPropsType) => {
                         <div className="absolute top-0 right-2 cursor-pointer" onClick={() => {setShowingSignUpPopup(false)}}>
                             x
                         </div>
-                        <div className="w-fit m-auto">
+                        <div className="w-fit m-auto pb-5">
                             Sign up to view listings!
                         </div>
                         <ContinueWithGoogle callback={() => {setShowingSignUpPopup(false)}} setUserAuthStatus={setUserAuthStatus}/>

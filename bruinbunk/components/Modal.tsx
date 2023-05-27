@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import arrowLeft from "../public/leftArrow.png"; // used for local images
-import arrowRight from "../public/rightArrow.png"; // used for local images
+import arrowLeft from "../public/leftDark.svg"; // used for local images
+import arrowRight from "../public/rightDark.svg"; // used for local images
 
 
 const externalImageLoader = ({ src }: { src: string }) =>
@@ -54,18 +54,18 @@ const Modal = (props: ModalProps) => {
     }
 
     const monthMapping = (shortMonth: any) => {
-        if (shortMonth == "jan") return "JANUARY";
-        if (shortMonth == "feb") return "FEBURARY";
-        if (shortMonth == "mar") return "MARCH";
-        if (shortMonth == "apr") return "APRIL";
-        if (shortMonth == "may") return "MAY";
-        if (shortMonth == "jun") return "JUNE";
-        if (shortMonth == "jul") return "JULY";
-        if (shortMonth == "aug") return "AUGUST";
-        if (shortMonth == "sep") return "SEPTEMBER";
-        if (shortMonth == "oct") return "OCTOBER";
-        if (shortMonth == "nov") return "NOVEMBER";
-        if (shortMonth == "dec") return "DECEMBER";
+        if (shortMonth == "jan") return "January";
+        if (shortMonth == "feb") return "February";
+        if (shortMonth == "mar") return "March";
+        if (shortMonth == "apr") return "April";
+        if (shortMonth == "may") return "May";
+        if (shortMonth == "jun") return "June";
+        if (shortMonth == "jul") return "July";
+        if (shortMonth == "aug") return "August";
+        if (shortMonth == "sep") return "September";
+        if (shortMonth == "oct") return "October";
+        if (shortMonth == "nov") return "November";
+        if (shortMonth == "dec") return "December";
     }
 
     //useEffect(() => {setSelectedImageIndex((prevState: number) => {selectedImageIndex = prevState})}, [selectedImageIndex])
@@ -80,7 +80,7 @@ const Modal = (props: ModalProps) => {
                     <div className="flex fixed h-screen">
                         <div className={"m-auto "  + (selectedImageIndex != 0 ? " " : " hidden")}>
                             <button onClick={() => {onClickPrevImage()}}>
-                                <Image src={arrowLeft} alt="L" className="w-fit h-fit z-20" width={10} height={10}/>
+                                <Image src={arrowLeft} alt="L" className="w-2/3 h-2/3 z-20" width={5} height={5}/>
 
                             </button>
                         </div>
@@ -105,24 +105,24 @@ const Modal = (props: ModalProps) => {
                                     onClick={() => {}}
                                 />
                                 <div>
-                                <div className="opacity-0 group-hover:opacity-100 absolute bg-gradient-to-t from-black w-full bottom-0 h-1/2">
+                                <div className="opacity-0 group-hover:opacity-100 absolute bg-gradient-to-t from-black w-full bottom-0 h-1/3">
                                     
                                     <div className={"flex h-full p-4 opacity-100" }>
                                         <div className="m-auto w-full text-white">
-                                            <div className="w-full text-center">
+                                            <div className="w-full text-center font-bold pb-5" style={{fontFamily:'Montserrat', fontSize: 20}}>
                                                 {selectedImageIndex+1}/{masterListings[selectedListing]?.images.length}
                                             </div>
-                                            <div>
-                                                Notes: {masterListings[selectedListing]?.notes}
+                                            <div className="pb-2" style={{fontFamily:'Montserrat'}}>
+                                                <b>Notes:</b> {masterListings[selectedListing]?.notes}
                                             </div>
-                                            <div>
-                                                Contact: {masterListings[selectedListing]?.contact ? masterListings[selectedListing]?.contact : "Missing"}
+                                            <div className="pb-2" style={{fontFamily:'Montserrat'}}>
+                                                <b>Contact:</b> {masterListings[selectedListing]?.contact ? masterListings[selectedListing]?.contact : "Missing"}
                                             </div>
-                                            <div>
-                                                Rent: {masterListings[selectedListing]?.rent != -1 ? "Rent negotiable" :  masterListings[selectedListing]?.rent}
+                                            <div className="pb-2" style={{fontFamily:'Montserrat'}}>
+                                                <b>Rent:</b> {masterListings[selectedListing]?.rent == -1 ? "Negotiable" :  masterListings[selectedListing]?.rent}
                                             </div>
-                                            <div>
-                                                Months: {monthMapping( masterListings[selectedListing]?.months[0])} - {monthMapping(masterListings[selectedListing]?.months[masterListings[selectedListing]?.months.length-1])}
+                                            <div className="pb-2" style={{fontFamily:'Montserrat'}}>
+                                                <b>Months:</b> {monthMapping( masterListings[selectedListing]?.months[0])} - {monthMapping(masterListings[selectedListing]?.months[masterListings[selectedListing]?.months.length-1])}
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@ const Modal = (props: ModalProps) => {
                     <div className="flex fixed h-screen">
                         <div className={"m-auto" + (selectedImageIndex != masterListings[selectedListing]?.images.length-1 ? " " : " hidden")}>
                             <button onClick={() => {onClickNextImage()}}>
-                                <Image src={arrowRight} alt="R" className="w-fit h-fit z-20" width={10} height={10}/>
+                                <Image src={arrowRight} alt="R" className="w-2/3 h-2/3 z-20" width={10} height={10}/>
 
                             </button>
                         </div>
