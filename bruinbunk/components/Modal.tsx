@@ -80,19 +80,19 @@ const Modal = (props: ModalProps) => {
                     <div className="flex fixed h-screen">
                         <div className={"m-auto "  + (selectedImageIndex != 0 ? " " : " hidden")}>
                             <button onClick={() => {onClickPrevImage()}}>
-                                <Image src={arrowLeft} alt="L" className="w-2/3 h-2/3 z-20" width={5} height={5}/>
+                                <Image src={arrowLeft} alt="L" className="w-10 h-10 z-20" width={5} height={5}/>
 
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div className="w-8/12 h-screen">
+                <div className="w-8/12 h-[calc(100dvh)] ">
                     
                      
-                    <div className="flex w-full h-screen">
-                        <div className="m-auto w-full h-screen">
-                            <div className="h-full w-full relative group">
+                    <div className="flex w-full h-[calc(100dvh)] ">
+                        <div className="m-auto w-full h-[calc(100dvh)] ">
+                            <div className="h-[calc(100dvh)] w-full relative group">
 
                             
                                 <Image 
@@ -105,7 +105,7 @@ const Modal = (props: ModalProps) => {
                                     onClick={() => {}}
                                 />
                                 <div>
-                                <div className="opacity-0 group-hover:opacity-100 absolute bg-gradient-to-t from-black w-full bottom-0 h-fit">
+                                <div className="md:opacity-0 group-hover:opacity-100 absolute md:bg-gradient-to-t from-black w-full md:bottom-0 h-fit">
                                     
                                     <div className={"flex h-full p-4 opacity-100" }>
                                         <div className="m-auto w-full text-white">
@@ -139,7 +139,7 @@ const Modal = (props: ModalProps) => {
                     <div className="flex fixed h-screen">
                         <div className={"m-auto" + (selectedImageIndex != masterListings[selectedListing]?.images.length-1 ? " " : " hidden")}>
                             <button onClick={() => {onClickNextImage()}}>
-                                <Image src={arrowRight} alt="R" className="w-2/3 h-2/3 z-20" width={10} height={10}/>
+                                <Image src={arrowRight} alt="R" className="w-10 h-10 z-20" width={10} height={10}/>
 
                             </button>
                         </div>

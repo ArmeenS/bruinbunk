@@ -1,6 +1,6 @@
 // Basic dropdown from the problem description
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "./Popup";
 
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
@@ -16,9 +16,11 @@ function Dropdown(props) {
 
     // If the multiselect option is turned off, the first option should be chosen by default
     let startingSelectOptionsIndex = []
-    if (!(props.multiselect)) {
-        if (props.options.length > 0) startingSelectOptionsIndex = [0]
-    }
+    useEffect(() => { 
+        if (!(props.multiselect)) {
+            if (props.options.length > 0) startingSelectOptionsIndex = [0]
+        }
+    }, []);
 
     // A list of the options that are selected by index 
     let selectedOptionsIndex = props.selectedOptions;
@@ -26,9 +28,11 @@ function Dropdown(props) {
 
     // If the multiselect option is turned off, the first option should be chosen by default
     let startingIsSelectedOption = {}
-    if (!(props.multiselect)) {
-        if (props.options.length > 0) startingIsSelectedOption = {"0": true}
-    }
+    useEffect(() => { 
+        if (!(props.multiselect)) {
+            if (props.options.length > 0) startingIsSelectedOption = {"0": true}
+        }
+    }, []);
 
     // A hashmap of the options that are selected by index (for O(1) access time) 
     const [ isSelectedOption, setIsSelectedOption ] = useState(startingIsSelectedOption);
@@ -59,7 +63,7 @@ function Dropdown(props) {
                     width: width,
                 }}
 
-                onClick={onClickHandler} // The dropdown was clicked
+                onClick={() => {onClickHandler()}} // The dropdown was clicked
             >
                 
                 <div // The actual text inside the dropdown
