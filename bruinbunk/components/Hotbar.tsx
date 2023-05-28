@@ -46,33 +46,33 @@ function Hotbar(props: propsType) {
     const { setShownListings, masterListing, isSearchMode, setSearchMode, setUserAuthStatus } = props;
 
     const monthMapping = (shortMonth: any) => {
-        if (shortMonth == "jan") return "JANUARY";
-        if (shortMonth == "feb") return "FEBURARY";
-        if (shortMonth == "mar") return "MARCH";
-        if (shortMonth == "apr") return "APRIL";
-        if (shortMonth == "may") return "MAY";
-        if (shortMonth == "jun") return "JUNE";
-        if (shortMonth == "jul") return "JULY";
-        if (shortMonth == "aug") return "AUGUST";
-        if (shortMonth == "sep") return "SEPTEMBER";
-        if (shortMonth == "oct") return "OCTOBER";
-        if (shortMonth == "nov") return "NOVEMBER";
-        if (shortMonth == "dec") return "DECEMBER";
+        if (shortMonth == "jan") return "January";
+        if (shortMonth == "feb") return "February";
+        if (shortMonth == "mar") return "March";
+        if (shortMonth == "apr") return "April";
+        if (shortMonth == "may") return "May";
+        if (shortMonth == "jun") return "June";
+        if (shortMonth == "jul") return "July";
+        if (shortMonth == "aug") return "August";
+        if (shortMonth == "sep") return "September";
+        if (shortMonth == "oct") return "October";
+        if (shortMonth == "nov") return "November";
+        if (shortMonth == "dec") return "December";
     }
 
     const roomMapping = (shortRoom: any) => {
-        if (shortRoom == "1B/1B") return "1 Bed 1 Bath";
-        if (shortRoom == "2B/1B") return "2 Bed 1 Bath";
-        if (shortRoom == "1B/2B") return "1 Bed 2 Bath";
-        if (shortRoom == "2B/2B") return "2 Bed 2 Bath";
-        if (shortRoom == "3B/2B") return "3 Bed 2 Bath";
-        if (shortRoom == "3B/1B") return "3 Bed 1 Bath";
-        if (shortRoom == "4B/2B") return "4 Bed 2 Bath";
-        if (shortRoom == "4B/3B") return "4 Bed 3 Bath";
-        if (shortRoom == "4B/4B") return "4 Bed 4 Bath";
-        if (shortRoom == "5B/3B") return "5 Bed 3 Bath";
-        if (shortRoom == "5B/5B") return "5 Bed 5 Bath";
-        if (shortRoom == "6B/6B") return "6 Bed 6 Bath";
+        if (shortRoom == "1B/1B") return "1 Bed / 1 Bath";
+        if (shortRoom == "2B/1B") return "2 Bed / 1 Bath";
+        if (shortRoom == "1B/2B") return "1 Bed / 2 Bath";
+        if (shortRoom == "2B/2B") return "2 Bed / 2 Bath";
+        if (shortRoom == "3B/2B") return "3 Bed / 2 Bath";
+        if (shortRoom == "3B/1B") return "3 Bed / 1 Bath";
+        if (shortRoom == "4B/2B") return "4 Bed / 2 Bath";
+        if (shortRoom == "4B/3B") return "4 Bed / 3 Bath";
+        if (shortRoom == "4B/4B") return "4 Bed / 4 Bath";
+        if (shortRoom == "5B/3B") return "5 Bed / 3 Bath";
+        if (shortRoom == "5B/5B") return "5 Bed / 5 Bath";
+        if (shortRoom == "6B/6B") return "6 Bed / 6 Bath";
     }
 
     let roomOptions: Array<string> = [
@@ -153,7 +153,7 @@ function Hotbar(props: propsType) {
         let months: Array<string> = [];
         selectedMonthOptionsIndex.map((idx: number) => {months.push(monthOptions[idx])})
 
-        let currentListings = filterListings(masterListing, options, months, 0, 10000);
+        let currentListings = filterListings(masterListing, options, months, -1, 10000);
 
         if (options.length == 0 && months.length == 0) currentListings = props.masterListing;
         setShownListings(currentListings);
